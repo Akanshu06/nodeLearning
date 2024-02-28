@@ -30,8 +30,8 @@ function handleRequest(req,res) {
     });
     req.on("end", () => {
       const messagebody = Buffer.concat(body).toString();
-      console.log(messagebody);
-      fs.writeFileSync("message.txt", messagebody);
+      const message = messagebody.split('=')[0];
+      fs.writeFileSync("message.txt", message);
       res.write(`<html>${messagebody}</html>`);
     });
 
