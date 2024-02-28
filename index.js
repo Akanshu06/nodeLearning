@@ -1,9 +1,7 @@
-const http = require("http");
-const fs = require("fs");
-const { log } = require("console");
-const { buffer } = require("stream/consumers");
 
-const server = http.createServer((req, res) => {
+const fs = require("fs");
+
+function handleRequest(req,res) {
   const url = req.url;
   const method = req.method;
   if (url === "/") {
@@ -50,9 +48,12 @@ const server = http.createServer((req, res) => {
 
     return res.end();
   }
-});
+
+}
+ 
 
 // Start the server on port 4000
-server.listen(3000, () => {
-  console.log("Server is running on port 3000");
-});
+module.exports={
+  handler:handleRequest,
+  someText:'hello my name is khan'
+};
